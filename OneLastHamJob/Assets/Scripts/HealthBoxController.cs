@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AmmoBoxController : MonoBehaviour
+public class HealthBoxController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,9 +14,9 @@ public class AmmoBoxController : MonoBehaviour
         
     }
 
-    public int ammoInteract()
+    public int healthInteract()
     {
         Destroy(gameObject);
-        return 6;
+        return 1;
     }
 }
