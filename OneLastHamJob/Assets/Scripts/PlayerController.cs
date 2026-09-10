@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,15 +42,23 @@ public class PlayerController : MonoBehaviour
             Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
             Vector3 shootVector = clickWorldSpaceVector - transform.position;
 
-            RaycastHit[] hits = new RaycastHit[10];
-            Debug.Log(Physics.RaycastNonAlloc(transform.position, shootVector.normalized, hits));
-
-            Debug.Log(shootVector+":::"+hits[0].collider.gameObject.name);
-
-
-
-            Debug.DrawLine(transform.position, shootVector, Color.red, 5);
-
+            RaycastHit[] hits = new RaycastHit[1];
+            
+            if (Physics.RaycastNonAlloc(transform.position, shootVector.normalized, hits)!=0)
+            {
+                GameObject objectHit = hits[0].collider.gameObject;
+                if (objectHit.tag=="Enemy")
+                {
+                    objectHit.GetComponent<EnemyController>().die();
+                }
+                else
+                {
+                    Debug.Log("missed me bitch");
+                    //if doesn't hit an enemy, do some particle stuff??
+                }
+            }
+            
+            
 
 
         }
