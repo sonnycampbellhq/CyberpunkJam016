@@ -2,11 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class playerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
+    [SerializeField]
+    Camera camera;
     InputAction movement;
     InputAction shoot;
+    [SerializeField]
+    float moveSpeed=5;
     float direction;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,17 +22,21 @@ public class playerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        direction = movement.ReadValue<Vector2>().x;
-        Vector2 moveAmount = movement.ReadValue<Vector2>()*Time.deltaTime*5;
-        transform.position+=(Vector3)moveAmount;
+        playerMovement();
         mouseDetection();
+    }
+
+    void playerMovement()
+    {
+        direction = Mathf.Ceil(movement.ReadValue<Vector2>().x);
+        transform.position += new Vector3(direction*Time.deltaTime*moveSpeed, 0, 0);
     }
 
     void mouseDetection()
     {
         if (shoot.triggered)
         {
-            Debug.DrawLine(transform.position, Input.mousePosition);
+            Debug.DrawLine(transform.position, camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Color.black, 1);
             Debug.Log("yuh");
         }
     }

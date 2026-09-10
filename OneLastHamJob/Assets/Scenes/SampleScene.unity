@@ -268,7 +268,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1d754883bcd78a4e84fca5734af252a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::cameraController
+  m_EditorClassIdentifier: Assembly-CSharp::CameraController
   player: {fileID: 1659057136}
 --- !u!1 &410087039
 GameObject:
@@ -446,6 +446,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1563679162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8513424388201257645, guid: e2411e4ff996bfb4ab3a69fd68972a4a, type: 3}
+  m_PrefabInstance: {fileID: 1625252823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1563679166
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563679162}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 123.90597, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1625252823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,7 +527,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -8513424388201257645, guid: e2411e4ff996bfb4ab3a69fd68972a4a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1563679166}
   m_SourcePrefab: {fileID: 100100000, guid: e2411e4ff996bfb4ab3a69fd68972a4a, type: 3}
 --- !u!1 &1659057136
 GameObject:
@@ -515,7 +544,8 @@ GameObject:
   - component: {fileID: 1659057139}
   - component: {fileID: 1659057138}
   - component: {fileID: 1659057137}
-  - component: {fileID: 1659057141}
+  - component: {fileID: 1659057142}
+  - component: {fileID: 1659057143}
   m_Layer: 0
   m_Name: Detective
   m_TagString: Untagged
@@ -618,7 +648,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1659057141
+--- !u!54 &1659057142
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659057136}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0
+--- !u!114 &1659057143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -629,7 +686,9 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cabec30b1fcfdc4ea816c2abb240021, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::playerMovement
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  camera: {fileID: 330585545}
+  moveSpeed: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

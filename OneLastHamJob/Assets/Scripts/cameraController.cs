@@ -1,18 +1,18 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class cameraController : MonoBehaviour
+public class CameraController : MonoBehaviour
 {
     [SerializeField]
     GameObject player;
-    playerMovement playerMovementScript;
+    PlayerController playerMovementScript;
     float offset = 2.5f;
     float offsetTarget=0;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        playerMovementScript = player.GetComponent<playerMovement>();
+        playerMovementScript = player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
