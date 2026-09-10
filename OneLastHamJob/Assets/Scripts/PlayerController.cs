@@ -97,26 +97,19 @@ public class PlayerController : MonoBehaviour
                 Vector3 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
 
                 RaycastHit[] hits = new RaycastHit[5];
-            
-                if (Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits)!=0)
-                {
-                    bool enemyHit = false;
-                    GameObject objectHit = hits[0].collider.gameObject;
-                    for(int i=0; i<5; i++)
-                    {
-                        if (objectHit.tag=="Enemy")
-                        {
-                            objectHit.GetComponent<EnemyController>().die();
-                            enemyHit=true;
-                        }
-                    }
 
-                    if(!enemyHit)Debug.Log("didn't hit a single enemy");
-                }
-                else
+                int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
+                bool enemyHit = false;
+                for(int i=0; i<hitCount; i++)
                 {
-                    Debug.Log("missed me bitch");    
+                    GameObject objectTemp = hits[i].collider.gameObject;
+                    if (objectTemp.tag=="Enemy")
+                    {
+                        objectTemp.GetComponent<EnemyController>().die();
+                        enemyHit=true;
+                    }
                 }
+                if(!enemyHit)Debug.Log("didn't hit a single enemy");
             }
             else
             {
