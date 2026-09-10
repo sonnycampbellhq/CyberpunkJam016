@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     int startAmmo;
     int ammo;
-    Vector3 playerShootOffset = new Vector3(0, 0.5f, 0);
+    Vector3 playerShootOffset = new Vector3(0, 0, 0);
 
     [SerializeField]
     int startHealth;

@@ -24,6 +24,6 @@ public class CameraController : MonoBehaviour
             offsetTarget = player.transform.position.x+playerDirection*offset;
         }
         float xPos = Mathf.Lerp(transform.position.x, offsetTarget, 1f-Mathf.Exp(-5f*Time.deltaTime));
-        transform.position = new Vector3(xPos, 3, -10);
+        transform.position = new Vector3(xPos, 2.5f, -10);
     }
 }
