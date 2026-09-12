@@ -172,7 +172,8 @@ PrefabInstance:
       value: THING
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -796266442744743171, guid: d5808d28a3b6aa74f9dd00e881b0b794, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5808d28a3b6aa74f9dd00e881b0b794, type: 3}
@@ -942,10 +943,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   camera: {fileID: 330585545}
+  canvas: {fileID: 2055485345}
   moveSpeed: 5
   startAmmo: 12
   startHealth: 5
   invincibilityDuration: 2
+  rectTransform: {fileID: 2055485346}
 --- !u!1 &1673590872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 1
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     Camera camera;
+    RenderTexture resolutionTarget;
     InputAction movement;
     InputAction shoot;
     InputAction interact;
@@ -43,8 +44,7 @@ public class PlayerController : MonoBehaviour
         health = startHealth;
         interactableItems = new List<GameObject>();
 
-        Debug.Log("There is an issue where if you stay inside an enemy, you will not take damage after your invincibility is up. I will fix this at some point and make you flash when invincible or something");
-        Debug.Log("Found another issue where clicking on an enemy doesn't kill it, think it's because ray is shot from player centre so aiming is unnatural");
+        resolutionTarget = camera.targetTexture;
     }
 
     // Update is called once per frame
@@ -72,44 +72,46 @@ public class PlayerController : MonoBehaviour
             if (itemTemp.tag == "Ammo")
             {
                 ammo+=itemTemp.GetComponent<AmmoBoxController>().ammoInteract();//change to accept all consumable types
-                Debug.Log("Gained 6 ammo:" + ammo);
             }
             else if(itemTemp.tag == "Health")
             {
                 health+=itemTemp.GetComponent<HealthBoxController>().healthInteract();
-                Debug.Log("gained 1 health: "+health);
             }
         }
     }
 
+
+    [SerializeField]
+    RectTransform rectTransform;
+
     void mouseDetection()
     {
-        Debug.Log("Ammo count: "+ammo);
         if (shoot.triggered)
         {
             if (ammo > 0)
             {
                 ammo--;
-            
-                Ray clickRayZPlane = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+                //very annoying vector stuff to get the vector from the player to the mouse on the z=0 plane
+                Vector2 mouse = Mouse.current.position.ReadValue();
+                Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
+                Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
                 float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
                 Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
                 Vector3 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
 
-                RaycastHit[] hits = new RaycastHit[5];
+                Debug.Log(shootVector);
 
+                RaycastHit[] hits = new RaycastHit[5];
                 int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
-                bool enemyHit = false;
                 for(int i=0; i<hitCount; i++)
                 {
                     GameObject objectTemp = hits[i].collider.gameObject;
                     if (objectTemp.tag=="Enemy")
                     {
                         objectTemp.GetComponent<EnemyController>().die();
-                        enemyHit=true;
                     }
                 }
-                if(!enemyHit)Debug.Log("didn't hit a single enemy");
             }
             else
             {
@@ -128,7 +130,6 @@ public class PlayerController : MonoBehaviour
             {
                 lastHit=Time.time;
                 health--;
-                Debug.Log("health: "+health);
             }
         }
         else
