@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
         playerDefaultColour = gameObject.GetComponent<MeshRenderer>().material.color;
 
-        bloodParticleSystem = GameObject.FindGameObjectWithTag("ParticleSystem");
+        bloodParticleSystem = transform.GetChild(1).gameObject;
     }
 
     // Update is called once per frame
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
                     GameObject objectTemp = hits[i].collider.gameObject;
                     if (objectTemp.tag=="Enemy")
                     {
-                        objectTemp.GetComponent<EnemyController>().die();
+                        objectTemp.GetComponent<EnemyController>().damage(vectorToAngle(shootVector));
                     }
                 }
             }

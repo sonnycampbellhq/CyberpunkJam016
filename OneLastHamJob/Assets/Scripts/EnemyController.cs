@@ -7,10 +7,13 @@ public class EnemyController : MonoBehaviour
     int direction;
     [SerializeField]
     float moveSpeed = 2;
+    GameObject bloodParticleSystem;
+    int health=3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        bloodParticleSystem = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -37,9 +40,17 @@ public class EnemyController : MonoBehaviour
         return Mathf.Sign(Mathf.Sin(2*x)*Mathf.Abs(Mathf.Sin(2*x))+1)/2;
     }
 
-    public void die()
+    public void damage(float damageAngle)
     {
-        Debug.Log("BLEUGHGGHH");
-        Destroy(gameObject);
+        bloodParticleSystem.transform.rotation=Quaternion.Euler(0, 0, damageAngle-90);
+        bloodParticleSystem.GetComponent<ParticleSystem>().Play();
+        health--;
+        if (health <= 0)
+        {
+            // on death, spawn in a copy of the mesh, which is ragdolled, and doesn't have the enemy tag
+            // have a darker colour so it's clearly dead, and emit a final blood particle
+            Debug.Log("Fix the death");
+            Destroy(gameObject); 
+        }
     }
 }
