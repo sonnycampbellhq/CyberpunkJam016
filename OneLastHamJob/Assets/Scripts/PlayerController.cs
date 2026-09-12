@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     bool hitInvincible = false;
 
     Color playerDefaultColour;
+
+    GameObject bloodParticleSystem;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
         resolutionTarget = camera.targetTexture;
 
         playerDefaultColour = gameObject.GetComponent<MeshRenderer>().material.color;
+
+        bloodParticleSystem = GameObject.FindGameObjectWithTag("ParticleSystem");
     }
 
     // Update is called once per frame
@@ -128,7 +133,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Enemy")
         {
-            takeDamageCheck();
+            takeDamageCheck(collider.gameObject);
         }
     }
 
@@ -150,19 +155,37 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void takeDamageCheck()
+    void takeDamageCheck(GameObject enemyGO)
     {
         if (!hitInvincible)
             {
                 lastHit=Time.time;
                 health--;
                 Debug.Log(health);
+
+                onHitParticles(enemyGO.transform.position);
             }
+    }
+
+    void onHitParticles(Vector3 enemyPosition)
+    {
+        //get angle to enemy that damaged player
+
+        //angle=thatAngle+180
+        //set particlerotation.z to that val
+        float angle = vectorToAngle(enemyPosition-transform.position)+90;
+        Debug.Log(angle);
+        bloodParticleSystem.transform.rotation=Quaternion.Euler(0, 0, angle);
+        bloodParticleSystem.GetComponent<ParticleSystem>().Play();
+    }
+
+    float vectorToAngle(Vector3 vectorIn)
+    {
+        return Mathf.Atan2(vectorIn.y, vectorIn.x)*Mathf.Rad2Deg;
     }
 
     bool hitInvincibilityCheck()
     {
-        Debug.Log(lastHit+hitInvincibilityDuration +" +:t "+Time.time);
         return (lastHit+hitInvincibilityDuration>Time.time);
     }
 
