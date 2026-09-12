@@ -30,8 +30,11 @@ public class PlayerController : MonoBehaviour
     int health;
 
     [SerializeField]
-    float invincibilityDuration;
-    float lastHit = 0;
+    float hitInvincibilityDuration;
+    float lastHit=-10;
+    bool hitInvincible = false;
+
+    Color playerDefaultColour;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,6 +48,8 @@ public class PlayerController : MonoBehaviour
         interactableItems = new List<GameObject>();
 
         resolutionTarget = camera.targetTexture;
+
+        playerDefaultColour = gameObject.GetComponent<MeshRenderer>().material.color;
     }
 
     // Update is called once per frame
@@ -53,6 +58,11 @@ public class PlayerController : MonoBehaviour
         playerMovement();
         mouseDetection();
         interactCheck();
+        hitInvincible = hitInvincibilityCheck();
+        if (hitInvincible)
+        {
+            updateInvincibilityFlash();
+        }
     }
 
     void playerMovement()
@@ -80,10 +90,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-    [SerializeField]
-    RectTransform rectTransform;
-
     void mouseDetection()
     {
         if (shoot.triggered)
@@ -99,8 +105,6 @@ public class PlayerController : MonoBehaviour
                 float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
                 Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
                 Vector3 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
-
-                Debug.Log(shootVector);
 
                 RaycastHit[] hits = new RaycastHit[5];
                 int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
@@ -120,25 +124,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnTriggerStay(Collider collider)
+    {
+        if (collider.gameObject.tag == "Enemy")
+        {
+            takeDamageCheck();
+        }
+    }
+
     void OnTriggerEnter(Collider collider)
     {
         GameObject colliderGO = collider.gameObject;
-        if (colliderGO.tag == "Enemy")
-        {
-            //take damage, start invincibility timer
-            if (!invincibilityCheck())
-            {
-                lastHit=Time.time;
-                health--;
-            }
-        }
-        else
+        if (colliderGO.tag != "Enemy")
         {
             interactableItems.Add(collider.gameObject);
         }
     }
 
-    void OnTriggerExit(Collider collider)
+  void OnTriggerExit(Collider collider)
     {
         GameObject colliderGO = collider.gameObject;
         if (colliderGO.tag != "Enemy")
@@ -147,9 +150,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    bool invincibilityCheck()
+    void takeDamageCheck()
     {
-        return (lastHit+invincibilityDuration>Time.time);
+        if (!hitInvincible)
+            {
+                lastHit=Time.time;
+                health--;
+                Debug.Log(health);
+            }
+    }
+
+    bool hitInvincibilityCheck()
+    {
+        Debug.Log(lastHit+hitInvincibilityDuration +" +:t "+Time.time);
+        return (lastHit+hitInvincibilityDuration>Time.time);
+    }
+
+    void updateInvincibilityFlash()
+    {
+        Color tempColour = gameObject.GetComponent<MeshRenderer>().material.color;
+        tempColour.a = Mathf.Cos((Time.time-lastHit)*Mathf.PI*5)/2+0.5f;
+        gameObject.GetComponent<MeshRenderer>().material.color = tempColour;
+        Debug.Log("MAKE THIS FLASH TRANSPARENT and have a shadow");
     }
 
     public float getDirection()
