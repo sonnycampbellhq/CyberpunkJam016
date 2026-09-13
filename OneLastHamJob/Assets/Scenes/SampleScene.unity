@@ -1137,9 +1137,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 330585545}
     - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
-      propertyPath: reticleTexture
-      value: 
-      objectReference: {fileID: 2800000, guid: 5b830266b5294d84593bfc8176c621fd, type: 3}
+      propertyPath: rollSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: rollCooldown
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: rollDuration
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8263101574713315622, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: m_Name
       value: Detective

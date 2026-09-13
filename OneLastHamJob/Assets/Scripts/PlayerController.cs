@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     InputAction movement;
     InputAction shoot;
     InputAction interact;
+    InputAction roll;
 
     List<GameObject> interactableItems;
 
@@ -36,6 +37,18 @@ public class PlayerController : MonoBehaviour
     float lastHit=-10;
     bool hitInvincible = false;
 
+    [SerializeField]
+    float rollDuration;
+    [SerializeField]
+    float rollSpeed;
+    [SerializeField]
+    float rollCooldown;
+    float lastRoll=-10;
+    float rollDirection;
+
+    bool isRolling;
+    bool canRoll;
+
     Color playerDefaultColour;
 
     GameObject aimLine;
@@ -48,10 +61,13 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Debug.Log("I think the game is being slowed down slightly by calculating the shootVector every frame. \nThis is only necessary for the laser sight thing, or it could just be on shoot.\n I will try to find a fix");
+
         Cursor.SetCursor(reticleTexture, new Vector2(16,16), CursorMode.Auto);
         movement = InputSystem.actions.FindAction("Move");
         shoot = InputSystem.actions.FindAction("Attack");
         interact = InputSystem.actions.FindAction("Interact");
+        roll = InputSystem.actions.FindAction("Roll");
 
         ammo = startAmmo;
         health = startHealth;
@@ -78,12 +94,16 @@ public class PlayerController : MonoBehaviour
         {
             updateInvincibilityFlash();
         }
+        rollCheck();
     }
 
     void playerMovement()
     {
-        direction = Mathf.Ceil(movement.ReadValue<Vector2>().x);
-        transform.position += new Vector3(direction*Time.deltaTime*moveSpeed, 0, 0);
+        if (!isRolling)
+        {
+            direction = Mathf.Ceil(movement.ReadValue<Vector2>().x);
+            transform.position += new Vector3(direction*Time.deltaTime*moveSpeed, 0, 0);
+        }
     }
 
     void interactCheck()
@@ -107,18 +127,24 @@ public class PlayerController : MonoBehaviour
 
     void mouseDetection()
     {
-        Vector2 mouse = Mouse.current.position.ReadValue();
-        Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
-        Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
-        float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
-        Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
-        shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
-
         if (shoot.triggered)
         {
             if (ammo > 0)
             {
                 ammo--;
+
+                // refer to debug in top
+                // move this up to before if(shoot.triggered) to have it constantly update and slow down the game a bunch
+
+                Vector2 mouse = Mouse.current.position.ReadValue();
+                Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
+                Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
+                float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
+                Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
+                shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
+
+                //
+
                 RaycastHit[] hits = new RaycastHit[5];
                 int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
                 for(int i=0; i<hitCount; i++)
@@ -139,17 +165,6 @@ public class PlayerController : MonoBehaviour
 
     void drawAimLine()
     {
-        // line is a tiled 2d sprite, dotted red or white line, lots of transparency and low alpha
-
-
-        //method
-
-        //get non-normalised vector between player and mouse
-        //draw the aim line at the player (with pivot at the player), at vector of non normalised vector
-
-        //or
-
-        //get normalised vector, do the same but don't just stop it at the mouse, let it continue for (max size of screen)
         aimLine.transform.rotation = Quaternion.Euler(0, 0, vectorToAngle(shootVector));
     }
 
@@ -183,7 +198,7 @@ public class PlayerController : MonoBehaviour
 
     void takeDamageCheck(GameObject enemyGO)
     {
-        if (!hitInvincible)
+        if (!hitInvincible&&!isRolling)
             {
                 lastHit=Time.time;
                 health--;
@@ -220,8 +235,45 @@ public class PlayerController : MonoBehaviour
         Debug.Log("MAKE THIS FLASH TRANSPARENT and have a shadow");
     }
 
+    void rollCheck()
+    {
+        updateIsRolling();
+        updateCanRoll();
+        if (!isRolling)
+        {
+            rollDirection=0;
+        }
+
+        if (canRoll)
+        {
+            if (roll.triggered&&direction!=0)
+            {
+                lastRoll = Time.time;
+                rollDirection = direction;
+                Debug.Log("roll animation WHOA");
+            }
+        }
+        else if (isRolling)
+        {
+            //roll ongoing
+            transform.position += new Vector3(rollDirection*Time.deltaTime*rollSpeed, 0, 0);
+        }
+    }
+
+    void updateIsRolling()
+    {
+        isRolling = lastRoll+rollDuration > Time.time;
+        Debug.Log("ir:"+isRolling);
+    }
+
+    void updateCanRoll()
+    {
+        canRoll = lastRoll+rollCooldown < Time.time;
+        Debug.Log("cr:"+canRoll);
+    }
+
     public float getDirection()
     {
-        return direction;
+        return direction+rollDirection;
     }
 }
