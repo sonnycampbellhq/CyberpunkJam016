@@ -41,10 +41,14 @@ public class PlayerController : MonoBehaviour
     GameObject aimLine;
 
     GameObject bloodParticleSystem;
+
+    [SerializeField]
+    Texture2D reticleTexture;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Cursor.SetCursor(reticleTexture, Vector2.zero, CursorMode.Auto);
         movement = InputSystem.actions.FindAction("Move");
         shoot = InputSystem.actions.FindAction("Attack");
         interact = InputSystem.actions.FindAction("Interact");
