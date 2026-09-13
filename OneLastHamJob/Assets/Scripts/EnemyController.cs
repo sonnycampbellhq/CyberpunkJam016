@@ -25,19 +25,13 @@ public class EnemyController : MonoBehaviour
     void movement()
     {
         direction = (int)Mathf.Sign(player.transform.position.x - transform.position.x);
-        transform.Translate(direction*moveSpeed*Time.deltaTime*getVariableMoveSpeed1(),0,0);
+        transform.Translate(direction*moveSpeed*Time.deltaTime*getVariableMoveSpeed(),0,0);
     }
 
-    float getVariableMoveSpeed1()
+    float getVariableMoveSpeed()
     {
         float x = Time.time;
         return Mathf.Sin(5*x)+Mathf.Abs(Mathf.Sin(5*x));
-    }
-
-    float getVariableMoveSpeed2()
-    {
-        float x = Time.time;
-        return Mathf.Sign(Mathf.Sin(2*x)*Mathf.Abs(Mathf.Sin(2*x))+1)/2;
     }
 
     public void damage(float damageAngle)

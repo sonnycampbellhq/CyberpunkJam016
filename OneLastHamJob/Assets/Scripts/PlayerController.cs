@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     int startAmmo;
     int ammo;
     Vector3 playerShootOffset = new Vector3(0, 0, 0);
+    Vector3 shootVector;
 
     [SerializeField]
     int startHealth;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     bool hitInvincible = false;
 
     Color playerDefaultColour;
+
+    GameObject aimLine;
 
     GameObject bloodParticleSystem;
     
@@ -55,6 +58,8 @@ public class PlayerController : MonoBehaviour
         playerDefaultColour = gameObject.GetComponent<MeshRenderer>().material.color;
 
         bloodParticleSystem = transform.GetChild(1).gameObject;
+
+        aimLine = transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         playerMovement();
         mouseDetection();
+        drawAimLine();
         interactCheck();
         hitInvincible = hitInvincibilityCheck();
         if (hitInvincible)
@@ -97,20 +103,18 @@ public class PlayerController : MonoBehaviour
 
     void mouseDetection()
     {
+        Vector2 mouse = Mouse.current.position.ReadValue();
+        Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
+        Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
+        float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
+        Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
+        shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
+
         if (shoot.triggered)
         {
             if (ammo > 0)
             {
                 ammo--;
-
-                //very annoying vector stuff to get the vector from the player to the mouse on the z=0 plane
-                Vector2 mouse = Mouse.current.position.ReadValue();
-                Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
-                Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
-                float zPlaneVectorDistance = clickRayZPlane.origin.z/clickRayZPlane.direction.z;
-                Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
-                Vector3 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
-
                 RaycastHit[] hits = new RaycastHit[5];
                 int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
                 for(int i=0; i<hitCount; i++)
@@ -127,6 +131,22 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Out of ammo");
             }
         }
+    }
+
+    void drawAimLine()
+    {
+        // line is a tiled 2d sprite, dotted red or white line, lots of transparency and low alpha
+
+
+        //method
+
+        //get non-normalised vector between player and mouse
+        //draw the aim line at the player (with pivot at the player), at vector of non normalised vector
+
+        //or
+
+        //get normalised vector, do the same but don't just stop it at the mouse, let it continue for (max size of screen)
+        aimLine.transform.rotation = Quaternion.Euler(0, 0, vectorToAngle(shootVector));
     }
 
     void OnTriggerStay(Collider collider)
