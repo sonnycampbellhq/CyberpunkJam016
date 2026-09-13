@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class AmmoBoxController : MonoBehaviour
 {
+    BillboardController interactSign;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        interactSign = GetComponentInChildren<BillboardController>();
     }
 
     // Update is called once per frame
@@ -16,6 +17,7 @@ public class AmmoBoxController : MonoBehaviour
 
     public int ammoInteract()
     {
+        interactSign.preDestroy();
         Destroy(gameObject);
         return 6;
     }

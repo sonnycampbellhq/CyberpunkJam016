@@ -1,6 +1,7 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class billboardController : MonoBehaviour
+public class BillboardController : MonoBehaviour
 {
     bool inRange = false;
     float scale=0;
@@ -46,6 +47,13 @@ public class billboardController : MonoBehaviour
         //also experiment with rotation]
 
         transform.localScale=new Vector3(scale, scale, 0);
+    }
+
+    public void preDestroy()
+    {
+        transform.parent=null;
+        inRange = false;
+        Destroy(gameObject, 1);
     }
 
     void updateHeight()

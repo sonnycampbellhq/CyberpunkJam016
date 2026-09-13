@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (colliderGO.tag != "Enemy")
         {
             interactableItems.Add(collider.gameObject);
-            collider.gameObject.GetComponentInChildren<billboardController>().setInRange(true);
+            collider.gameObject.GetComponentInChildren<BillboardController>().setInRange(true);
         }
     }
 
@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         if (colliderGO.tag != "Enemy")
         {
             interactableItems.Remove(collider.gameObject);
-            collider.gameObject.GetComponentInChildren<billboardController>().setInRange(false);
+            collider.gameObject.GetComponentInChildren<BillboardController>().setInRange(false);
         }
     }
 
