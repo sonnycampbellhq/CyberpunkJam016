@@ -49,8 +49,10 @@ public class EnemyController : MonoBehaviour
         {
             // on death, spawn in a copy of the mesh, which is ragdolled, and doesn't have the enemy tag
             // have a darker colour so it's clearly dead, and emit a final blood particle
-            Debug.Log("Fix the death");
-            Destroy(gameObject); 
+            bloodParticleSystem.transform.parent=null;
+            Destroy(bloodParticleSystem, 1);
+            Debug.Log("Try to like ragdoll the enemy");
+            Destroy(gameObject);
         }
     }
 }

@@ -172,9 +172,6 @@ public class PlayerController : MonoBehaviour
     void onHitParticles(Vector3 enemyPosition)
     {
         //get angle to enemy that damaged player
-
-        //angle=thatAngle+180
-        //set particlerotation.z to that val
         float angle = vectorToAngle(enemyPosition-transform.position)+90;
         Debug.Log(angle);
         bloodParticleSystem.transform.rotation=Quaternion.Euler(0, 0, angle);

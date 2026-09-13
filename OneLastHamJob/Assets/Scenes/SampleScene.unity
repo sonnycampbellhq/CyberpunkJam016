@@ -647,9 +647,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 0
-      minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6226415, g: 0.17915626, b: 0.17915626, a: 1}
+      minMaxState: 2
+      minColor: {r: 0.20784314, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.9254902, g: 0.12941177, b: 0.12941177, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2895,10 +2895,6 @@ PrefabInstance:
     - target: {fileID: 2571813449310549921, guid: 71474eb28fe4cc04a9568bd0642bb05a, type: 3}
       propertyPath: m_Name
       value: EnemyTest (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6305372210294533809, guid: 71474eb28fe4cc04a9568bd0642bb05a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7140224177490726257, guid: 71474eb28fe4cc04a9568bd0642bb05a, type: 3}
       propertyPath: m_LocalPosition.x
