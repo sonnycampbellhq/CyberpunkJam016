@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Cursor.SetCursor(reticleTexture, Vector2.zero, CursorMode.Auto);
+        Cursor.SetCursor(reticleTexture, new Vector2(16,16), CursorMode.Auto);
         movement = InputSystem.actions.FindAction("Move");
         shoot = InputSystem.actions.FindAction("Attack");
         interact = InputSystem.actions.FindAction("Interact");
