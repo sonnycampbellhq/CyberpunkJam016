@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,8 +9,13 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     GameObject player;
     PlayerController playerMovementScript;
-    float offset = 2.5f;
+
+    InputAction look;
+
+    float xOffset = 2.5f;
     float offsetTarget=0;
+    float yOffset = 3;
+    float yPos=0;
 
     float referenceAspect = (float)1920/1080;
     float referenceSize = 5;
@@ -17,9 +23,9 @@ public class CameraController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-
         playerMovementScript = player.GetComponent<PlayerController>();
+
+        look = InputSystem.actions.FindAction("Look");
     }
 
     // Update is called once per frame
@@ -28,10 +34,18 @@ public class CameraController : MonoBehaviour
         float playerDirection = playerMovementScript.getDirection();
         if (playerDirection != 0)
         {
-            offsetTarget = player.transform.position.x+playerDirection*offset;
+            offsetTarget = player.transform.position.x+playerDirection*xOffset;
         }
+        lookVerticalCheck();
         float xPos = Mathf.Lerp(transform.position.x, offsetTarget, 1f-Mathf.Exp(-5f*Time.deltaTime));
-        transform.position = new Vector3(xPos, 2.5f, -10);
+        transform.position = new Vector3(xPos, yPos, -10);
+    }
+
+    void lookVerticalCheck()
+    {
+        //move this into lateupdate?
+        Vector2 lookDir = look.ReadValue<Vector2>();
+        yPos = Mathf.Lerp(transform.position.y, player.transform.position.y+1+yOffset*lookDir.y, 1f-Mathf.Exp(-5f*Time.deltaTime));
     }
 
     void setResolution()

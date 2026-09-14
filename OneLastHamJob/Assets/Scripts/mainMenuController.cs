@@ -5,6 +5,6 @@ public class mainMenuController : MonoBehaviour
 {
     public void onStartButtonPress()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level");
     }
 }
