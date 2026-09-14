@@ -2657,6 +2657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   camera: {fileID: 0}
+  gameMenuController: {fileID: 0}
   moveSpeed: 5
   startAmmo: 12
   startHealth: 5
@@ -2664,4 +2665,4 @@ MonoBehaviour:
   rollDuration: 0.75
   rollSpeed: 7.5
   rollCooldown: 1.25
-  reticleTexture: {fileID: 2800000, guid: 5b830266b5294d84593bfc8176c621fd, type: 3}
+  reticleTexture: {fileID: 2800000, guid: 1d47eb9c6027df342b9126e46b91edee, type: 3}
