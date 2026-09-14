@@ -64,7 +64,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Texture2D reticleTexture;
-    
+
+    Transform checkpoint;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -279,17 +282,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  void takeDamageCheck(GameObject enemyGO)
+    void takeDamageCheck(GameObject enemyGO)
     {
-        if (!hitInvincible&&!isRolling)
+        if (!hitInvincible && !isRolling)
         {
-            lastHit=Time.time;
+            lastHit = Time.time;
             health--;
             Debug.Log(health);
 
             onHitParticles(enemyGO.transform.position);
+
+            if (health <= 0)
+            {
+                Respawn();
+            }
         }
     }
+
 
     void onHitParticles(Vector3 enemyPosition)
     {
@@ -322,4 +331,22 @@ public class PlayerController : MonoBehaviour
     {
         return direction+rollDirection;
     }
+
+    public void SetCheckpoint(Transform newCheckpoint)
+    {
+        checkpoint = newCheckpoint;
+        Debug.Log("Checkpoint set!");
+    }
+
+    public void Respawn()
+    {
+        if (checkpoint != null)
+        {
+            health = startHealth;
+            rb.linearVelocity = Vector3.zero;
+            transform.position = checkpoint.position;
+            transform.rotation = checkpoint.rotation;
+        }
+    }
+
 }
