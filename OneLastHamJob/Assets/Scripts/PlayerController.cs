@@ -8,6 +8,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    Rigidbody rb;
+
     [SerializeField]
     Camera camera;
     RenderTexture resolutionTarget;
@@ -15,6 +17,7 @@ public class PlayerController : MonoBehaviour
     InputAction shoot;
     InputAction interact;
     InputAction roll;
+    InputAction jump;
 
     List<GameObject> interactableItems;
 
@@ -49,7 +52,8 @@ public class PlayerController : MonoBehaviour
     bool isRolling;
     bool canRoll;
 
-    Color playerDefaultColour;
+    bool isGrounded = true;
+    float jumpForce = 10;
 
     GameObject aimLine;
 
@@ -63,19 +67,21 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("I think the game is being slowed down slightly by calculating the shootVector every frame. \nThis is only necessary for the laser sight thing, or it could just be on shoot.\n I will try to find a fix");
 
+        rb=gameObject.GetComponent<Rigidbody>();
+
         Cursor.SetCursor(reticleTexture, new Vector2(16,16), CursorMode.Auto);
+
         movement = InputSystem.actions.FindAction("Move");
         shoot = InputSystem.actions.FindAction("Attack");
         interact = InputSystem.actions.FindAction("Interact");
         roll = InputSystem.actions.FindAction("Roll");
+        jump = InputSystem.actions.FindAction("Jump");
 
         ammo = startAmmo;
         health = startHealth;
         interactableItems = new List<GameObject>();
 
         resolutionTarget = camera.targetTexture;
-
-        playerDefaultColour = gameObject.GetComponent<MeshRenderer>().material.color;
 
         bloodParticleSystem = transform.GetChild(1).gameObject;
 
@@ -85,7 +91,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMovement();
         mouseDetection();
         drawAimLine();
         interactCheck();
@@ -94,16 +99,67 @@ public class PlayerController : MonoBehaviour
         {
             updateInvincibilityFlash();
         }
+        jumpCheck();
         rollCheck();
     }
 
-    void playerMovement()
+    void FixedUpdate()
+    {
+        playerMovement();
+    }
+
+  void playerMovement()
     {
         if (!isRolling)
         {
             direction = Mathf.Ceil(movement.ReadValue<Vector2>().x);
             transform.position += new Vector3(direction*Time.deltaTime*moveSpeed, 0, 0);
         }
+    }
+
+    void jumpCheck()
+    {
+        if (isGrounded&&jump.triggered)
+        {
+            rb.AddForce(new Vector3(0,jumpForce,0), ForceMode.Impulse);
+            isGrounded=false;
+        }
+    }
+
+    void rollCheck()
+    {
+        updateIsRolling();
+        updateCanRoll();
+        if (!isRolling)
+        {
+            rollDirection=0;
+        }
+
+        if (canRoll)
+        {
+            if (roll.triggered&&direction!=0)
+            {
+                lastRoll = Time.time;
+                rollDirection = direction;
+                Debug.Log("roll animation WHOA");
+            }
+        }
+        else if (isRolling)
+        {
+            //roll ongoing
+            transform.position += new Vector3(rollDirection*Time.deltaTime*rollSpeed, 0, 0);
+        }
+    }
+
+    void updateIsRolling()
+    {
+        isRolling = lastRoll+rollDuration > Time.time;
+        Debug.Log("ir:"+isRolling);
+    }
+
+    void updateCanRoll()
+    {
+        canRoll = (lastRoll+rollCooldown < Time.time)&&isGrounded;
     }
 
     void interactCheck()
@@ -186,7 +242,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  void OnTriggerExit(Collider collider)
+    void OnTriggerExit(Collider collider)
     {
         GameObject colliderGO = collider.gameObject;
         if (colliderGO.tag != "Enemy")
@@ -196,16 +252,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void takeDamageCheck(GameObject enemyGO)
+    void OnCollisionEnter(Collision collision)
+    {
+        for (int i=0;i<collision.contactCount;i++)
+        {
+            if (collision.contacts[i].normal.y > 0.1)
+            {
+                isGrounded=true;
+            }
+        }
+    }
+
+  void takeDamageCheck(GameObject enemyGO)
     {
         if (!hitInvincible&&!isRolling)
-            {
-                lastHit=Time.time;
-                health--;
-                Debug.Log(health);
+        {
+            lastHit=Time.time;
+            health--;
+            Debug.Log(health);
 
-                onHitParticles(enemyGO.transform.position);
-            }
+            onHitParticles(enemyGO.transform.position);
+        }
     }
 
     void onHitParticles(Vector3 enemyPosition)
@@ -233,43 +300,6 @@ public class PlayerController : MonoBehaviour
         tempColour.a = Mathf.Cos((Time.time-lastHit)*Mathf.PI*5)/2+0.5f;
         gameObject.GetComponent<MeshRenderer>().material.color = tempColour;
         Debug.Log("MAKE THIS FLASH TRANSPARENT and have a shadow");
-    }
-
-    void rollCheck()
-    {
-        updateIsRolling();
-        updateCanRoll();
-        if (!isRolling)
-        {
-            rollDirection=0;
-        }
-
-        if (canRoll)
-        {
-            if (roll.triggered&&direction!=0)
-            {
-                lastRoll = Time.time;
-                rollDirection = direction;
-                Debug.Log("roll animation WHOA");
-            }
-        }
-        else if (isRolling)
-        {
-            //roll ongoing
-            transform.position += new Vector3(rollDirection*Time.deltaTime*rollSpeed, 0, 0);
-        }
-    }
-
-    void updateIsRolling()
-    {
-        isRolling = lastRoll+rollDuration > Time.time;
-        Debug.Log("ir:"+isRolling);
-    }
-
-    void updateCanRoll()
-    {
-        canRoll = lastRoll+rollCooldown < Time.time;
-        Debug.Log("cr:"+canRoll);
     }
 
     public float getDirection()
