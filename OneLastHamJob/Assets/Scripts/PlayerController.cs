@@ -165,7 +165,6 @@ public class PlayerController : MonoBehaviour
     void updateIsRolling()
     {
         isRolling = lastRoll+rollDuration > Time.time;
-        Debug.Log("ir:"+isRolling);
     }
 
     void updateCanRoll()
