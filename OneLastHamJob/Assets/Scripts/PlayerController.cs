@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded = true;
     float jumpForce = 10;
+    bool isJumping = false;
 
     GameObject aimLine;
 
@@ -106,6 +107,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         playerMovement();
+        if (isJumping)
+        {
+            addJumpForce();
+        }
     }
 
   void playerMovement()
@@ -121,9 +126,15 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded&&jump.triggered)
         {
-            rb.AddForce(new Vector3(0,jumpForce,0), ForceMode.Impulse);
-            isGrounded=false;
+            isJumping = true;
         }
+    }
+
+    void addJumpForce()
+    {
+        rb.AddForce(new Vector3(0,jumpForce,0), ForceMode.Impulse);
+        isGrounded=false;
+        isJumping=false;
     }
 
     void rollCheck()
@@ -259,6 +270,7 @@ public class PlayerController : MonoBehaviour
             if (collision.contacts[i].normal.y > 0.1)
             {
                 isGrounded=true;
+                rb.linearVelocity=Vector3.zero;
             }
         }
     }
