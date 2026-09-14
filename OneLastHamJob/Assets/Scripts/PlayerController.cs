@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     Camera camera;
+    [SerializeField]
+    GameMenuController gameMenuController;
     RenderTexture resolutionTarget;
     InputAction movement;
     InputAction shoot;
@@ -92,16 +94,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseDetection();
-        drawAimLine();
-        interactCheck();
-        hitInvincible = hitInvincibilityCheck();
-        if (hitInvincible)
+        if (!gameMenuController.getIsPaused())
         {
-            updateInvincibilityFlash();
+            mouseDetection();
+            drawAimLine();
+            interactCheck();
+            hitInvincible = hitInvincibilityCheck();
+            if (hitInvincible)
+            {
+                updateInvincibilityFlash();
+            }
+            jumpCheck();
+            rollCheck();
         }
-        jumpCheck();
-        rollCheck();
     }
 
     void FixedUpdate()
@@ -113,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-  void playerMovement()
+    void playerMovement()
     {
         if (!isRolling)
         {
