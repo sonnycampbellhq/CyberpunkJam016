@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: Computer1 2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: Of course, Master.
+  option1:
+    text: What happened in here on the 6th of November?
+    next: {fileID: 0}
+    action: 0
+  option2:
+    text: What is this place?
+    next: {fileID: 0}
+    action: 0

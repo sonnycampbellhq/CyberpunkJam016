@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     bool isRolling;
     bool canRoll;
 
+    bool movementDisabled = false;
+
     bool isGrounded = true;
     float jumpForce = 10;
     bool isJumping = false;
@@ -184,6 +186,18 @@ public class PlayerController : MonoBehaviour
         if (interact.triggered&&interactableItems.Count>0)
         {
             GameObject itemTemp = interactableItems[0];
+
+            if (itemTemp.tag == "NPC")
+            {
+                NPCSystem npc = itemTemp.GetComponent<NPCSystem>();
+
+                if (npc != null)
+                {
+                    npc.StartDialogue(this);
+                }
+
+                return;
+            }
 
             //appropriate if statement here?!
             interactableItems.Remove(itemTemp);
@@ -359,6 +373,21 @@ public class PlayerController : MonoBehaviour
             transform.rotation = checkpoint.rotation;
             bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
         }
+    }
+    public void DisableMovement()
+    {
+        movementDisabled = true;
+
+        direction = 0;
+        rollDirection = 0;
+
+  
+        isRolling = false;
+    }
+
+    public void EnableMovement()
+    {
+        movementDisabled = false;
     }
 
 }

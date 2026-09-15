@@ -9,6 +9,9 @@ TagManager:
   - Health
   - ParticleSystem
   - Wall
+  - Terminal
+  - Datapad
+  - NPC
   layers:
   - Default
   - TransparentFX
