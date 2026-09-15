@@ -2,14 +2,15 @@ using UnityEngine;
 
 public enum DialogueActionType
 {
-    None
+    None,
+    OpenDoors
 }
 
 [System.Serializable]
 public class DialogueChoice
 {
     public string text;
-    public DialogueNode next;   
+    public DialogueNode next;
 
     [Header("Optional Action")]
     public DialogueActionType action;

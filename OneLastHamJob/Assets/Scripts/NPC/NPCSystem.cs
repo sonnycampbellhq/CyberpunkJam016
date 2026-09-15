@@ -6,6 +6,9 @@ public class NPCSystem : MonoBehaviour
     [SerializeField] private string npcName;
     [SerializeField] private DialogueNode startingNode;
 
+    [Header("Dialogue Actions")]
+    [SerializeField] private Doors doors;
+
     private void Awake()
     {
         if (dialogue == null)
@@ -39,6 +42,13 @@ public class NPCSystem : MonoBehaviour
         switch (action)
         {
             case DialogueActionType.None:
+                break;
+
+            case DialogueActionType.OpenDoors:
+                if (doors != null)
+                {
+                    doors.DoorsOpen = true;
+                }
                 break;
         }
     }
