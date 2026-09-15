@@ -60,9 +60,8 @@ public class PlayerController : MonoBehaviour
     float jumpForce = 10;
     bool isJumping = false;
 
-    GameObject aimLine;
-
     GameObject bloodParticleSystem;
+    GameObject gunshotParticleSystem;
 
     [SerializeField]
     Texture2D reticleTexture;
@@ -92,8 +91,8 @@ public class PlayerController : MonoBehaviour
         resolutionTarget = camera.targetTexture;
 
         bloodParticleSystem = transform.GetChild(1).gameObject;
+        gunshotParticleSystem = transform.GetChild(2).gameObject;
 
-        aimLine = transform.GetChild(2).gameObject;
     }
 
     // Update is called once per frame
@@ -102,7 +101,6 @@ public class PlayerController : MonoBehaviour
         if (!gameMenuController.getIsPaused())
         {
             mouseDetection();
-            drawAimLine();
             interactCheck();
             hitInvincible = hitInvincibilityCheck();
             if (hitInvincible)
@@ -217,6 +215,10 @@ public class PlayerController : MonoBehaviour
                 Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
                 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
 
+                //create gunshot particles
+                gunshotParticleSystem.transform.rotation=Quaternion.Euler(0, 0, vectorToAngle(shootVector)+90);
+                gunshotParticleSystem.GetComponent<ParticleSystem>().Play();
+
                 //gets and sorts hits by distance
                 RaycastHit[] hits = new RaycastHit[5];
                 int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits, maxDistance: 10);
@@ -246,11 +248,6 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Out of ammo");
             }
         }
-    }
-
-    void drawAimLine()
-    {
-        aimLine.transform.rotation = Quaternion.Euler(0, 0, vectorToAngle(shootVector));
     }
 
     void OnTriggerStay(Collider collider)
@@ -315,7 +312,6 @@ public class PlayerController : MonoBehaviour
     {
         //get angle to enemy that damaged player
         float angle = vectorToAngle(enemyPosition-transform.position)+90;
-        Debug.Log(angle);
         bloodParticleSystem.transform.rotation=Quaternion.Euler(0, 0, angle);
         bloodParticleSystem.GetComponent<ParticleSystem>().Play();
     }
