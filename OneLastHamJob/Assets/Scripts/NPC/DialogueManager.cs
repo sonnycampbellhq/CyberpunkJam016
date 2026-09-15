@@ -29,14 +29,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (IsOpen)
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
-    }
+   
 
     public void StartDialogue(
         string npcName,
@@ -54,9 +47,6 @@ public class DialogueManager : MonoBehaviour
         currentNode = startNode;
         onClose = onClosed;
         onAction = onDialogueAction;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
 
         if (dialogueRoot != null)
         {
@@ -148,8 +138,7 @@ public class DialogueManager : MonoBehaviour
             dialogueRoot.SetActive(false);
         }
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
 
         try
         {
