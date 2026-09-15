@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
-  m_Name: Computer
+  m_Name: Notes
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  line: Welcome, Master. How may I assist you?
+  line: "Ham Master's Notes\n\nThe recent evil experiments or some bullshit have been going very well. One day the ham will be perferct. \n\nI keep forgetting my PIN, so imma write it here: 1919\nDoofus Alert! "
   option1:
-    text: I have questions about the factory.
-    next: {fileID: 11400000, guid: aae39a20ac36a764ea7347dda6687e6b, type: 2}
+    text: 'Exit '
+    next: {fileID: 0}
     action: 0
   option2:
-    text: Open all locked doors.
-    next: {fileID: 11400000, guid: ccd9e3dc11f7f1c4b920f2419e75a9f5, type: 2}
-    action: 1
+    text: '  '
+    next: {fileID: 0}
+    action: 0
