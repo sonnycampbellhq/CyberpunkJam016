@@ -2443,3 +2443,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 2
+  corpse: {fileID: 7453626406070182920, guid: 15bedb60e184a99489f88cebfe9e0a0c, type: 3}

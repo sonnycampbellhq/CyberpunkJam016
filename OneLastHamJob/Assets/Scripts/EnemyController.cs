@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     float moveSpeed = 2;
     GameObject bloodParticleSystem;
+    [SerializeField]
+    GameObject corpse;
     int health=3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -44,8 +46,12 @@ public class EnemyController : MonoBehaviour
             // on death, spawn in a copy of the mesh, which is ragdolled, and doesn't have the enemy tag
             // have a darker colour so it's clearly dead, and emit a final blood particle
             bloodParticleSystem.transform.parent=null;
-            Destroy(bloodParticleSystem, 1);
-            Debug.Log("Try to like ragdoll the enemy");
+            Destroy(bloodParticleSystem, 5);
+            GameObject corpseInstance = Instantiate(corpse);
+            corpseInstance.transform.position = transform.position;
+            damageAngle=damageAngle*Mathf.Deg2Rad;
+            corpseInstance.GetComponent<Rigidbody>().linearVelocity = new Vector2(Mathf.Cos(damageAngle), Mathf.Sin(damageAngle))*3; 
+            Destroy(corpseInstance, 10);
             Destroy(gameObject);
         }
     }

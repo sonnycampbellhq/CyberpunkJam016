@@ -241,6 +241,10 @@ public class PlayerController : MonoBehaviour
                     {
                         i=hitCount;
                     }
+                    else if(objectTemp.tag == "Corpse")
+                    {
+                        objectTemp.GetComponent<Rigidbody>().linearVelocity+=shootVector*(3-i/2);
+                    }
                 }
             }
             else

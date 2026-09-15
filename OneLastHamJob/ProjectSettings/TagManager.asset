@@ -9,6 +9,7 @@ TagManager:
   - Health
   - ParticleSystem
   - Wall
+  - Corpse
   layers:
   - Default
   - TransparentFX
