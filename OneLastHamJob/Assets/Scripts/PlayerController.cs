@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     bool isJumping = false;
 
     GameObject bloodParticleSystem;
+    GameObject bleedParticleSystem;
     GameObject gunshotParticleSystem;
 
     [SerializeField]
@@ -72,8 +73,6 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("I think the game is being slowed down slightly by calculating the shootVector every frame. \nThis is only necessary for the laser sight thing, or it could just be on shoot.\n I will try to find a fix");
-
         rb=gameObject.GetComponent<Rigidbody>();
 
         Cursor.SetCursor(reticleTexture, new Vector2(16,16), CursorMode.Auto);
@@ -91,8 +90,8 @@ public class PlayerController : MonoBehaviour
         resolutionTarget = camera.targetTexture;
 
         bloodParticleSystem = transform.GetChild(1).gameObject;
-        gunshotParticleSystem = transform.GetChild(2).gameObject;
-
+        bleedParticleSystem = transform.GetChild(2).gameObject;
+        gunshotParticleSystem = transform.GetChild(3).gameObject;
     }
 
     // Update is called once per frame
@@ -195,6 +194,7 @@ public class PlayerController : MonoBehaviour
             else if(itemTemp.tag == "Health")
             {
                 health+=itemTemp.GetComponent<HealthBoxController>().healthInteract();
+                bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
             }
         }
     }
@@ -314,6 +314,10 @@ public class PlayerController : MonoBehaviour
         float angle = vectorToAngle(enemyPosition-transform.position)+90;
         bloodParticleSystem.transform.rotation=Quaternion.Euler(0, 0, angle);
         bloodParticleSystem.GetComponent<ParticleSystem>().Play();
+        if (health == 1)
+        {
+            bleedParticleSystem.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     float vectorToAngle(Vector3 vectorIn)
@@ -353,6 +357,7 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
             transform.position = checkpoint.position;
             transform.rotation = checkpoint.rotation;
+            bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
         }
     }
 
