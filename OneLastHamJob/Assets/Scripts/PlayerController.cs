@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Collections;
 using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEditor;
@@ -207,9 +209,7 @@ public class PlayerController : MonoBehaviour
             {
                 ammo--;
 
-                // refer to debug in top
-                // move this up to before if(shoot.triggered) to have it constantly update and slow down the game a bunch
-
+                //gets angle from player to mouse
                 Vector2 mouse = Mouse.current.position.ReadValue();
                 Vector2 renderTexturePosition = new Vector2(mouse.x/Screen.width*resolutionTarget.width, mouse.y/Screen.height*resolutionTarget.height);
                 Ray clickRayZPlane = camera.ScreenPointToRay(renderTexturePosition);
@@ -217,16 +217,27 @@ public class PlayerController : MonoBehaviour
                 Vector3 clickWorldSpaceVector = clickRayZPlane.origin - zPlaneVectorDistance*clickRayZPlane.direction;
                 shootVector = clickWorldSpaceVector - (transform.position+playerShootOffset);
 
-                //
-
+                //gets and sorts hits by distance
                 RaycastHit[] hits = new RaycastHit[5];
-                int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits);
+                int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits, maxDistance: 10);
+                float[] hitDistances = new float[hitCount];
+                for(int k = 0; k<hitCount; k++)
+                {
+                    hitDistances[k]=hits[k].distance;
+                }
+                Array.Sort(hitDistances, hits);
+
+                //checks what is hit, stops checking if hits wall
                 for(int i=0; i<hitCount; i++)
                 {
-                    GameObject objectTemp = hits[i].collider.gameObject;
+                    GameObject objectTemp = hits[i].transform.gameObject;
                     if (objectTemp.tag=="Enemy")
                     {
                         objectTemp.GetComponent<EnemyController>().damage(vectorToAngle(shootVector));
+                    }
+                    else if (objectTemp.tag == "Wall")
+                    {
+                        i=hitCount;
                     }
                 }
             }
