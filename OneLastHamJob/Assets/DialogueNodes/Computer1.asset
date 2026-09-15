@@ -19,5 +19,5 @@ MonoBehaviour:
     action: 0
   option2:
     text: What is this place?
-    next: {fileID: 0}
+    next: {fileID: 11400000, guid: 8aba33ba378112d4a9352d620cb19147, type: 2}
     action: 0

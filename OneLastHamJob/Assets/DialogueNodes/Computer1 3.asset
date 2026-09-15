@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
   m_Name: Computer1 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  line: Of course, Master.
+  line: 'Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah '
   option1:
     text: What happened in here on the 6th of November?
     next: {fileID: 11400000, guid: 92a1214e6cfedc049a09cec2f30b9c90, type: 2}
     action: 0
   option2:
-    text: What is this place?
+    text: Log off.
     next: {fileID: 0}
     action: 0
