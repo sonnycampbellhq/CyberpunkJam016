@@ -21,14 +21,12 @@ public class NPCSystem : MonoBehaviour
             return;
         }
 
-        player.DisableMovement();
-
         dialogue.StartDialogue(
             npcName,
             startingNode,
             onClosed: () =>
             {
-                player.EnableMovement();
+                player.setIsInDialogue(false);
             },
             onDialogueAction: HandleDialogueAction
         );

@@ -3235,6 +3235,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1528715130}
   optionsMenu: {fileID: 85228669}
   confirmMenu: {fileID: 891491683}
+  playerController: {fileID: 946273093}
 --- !u!114 &218271382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5941,6 +5942,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8263101574713315622, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
   m_PrefabInstance: {fileID: 946273091}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &946273093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+  m_PrefabInstance: {fileID: 946273091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946273092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cabec30b1fcfdc4ea816c2abb240021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
 --- !u!1 &951105739
 GameObject:
   m_ObjectHideFlags: 0

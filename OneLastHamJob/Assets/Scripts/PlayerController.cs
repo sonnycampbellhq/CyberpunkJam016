@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     List<GameObject> interactableItems;
 
+    bool isInDialogue=false;
+
     [SerializeField]
     float moveSpeed=5;
     float direction;
@@ -55,8 +57,6 @@ public class PlayerController : MonoBehaviour
 
     bool isRolling;
     bool canRoll;
-
-    bool movementDisabled = false;
 
     bool isGrounded = true;
     float jumpForce = 10;
@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameMenuController.getIsPaused())
+        if (!isInDialogue&&!gameMenuController.getIsPaused())
         {
             mouseDetection();
             interactCheck();
@@ -194,22 +194,39 @@ public class PlayerController : MonoBehaviour
                 if (npc != null)
                 {
                     npc.StartDialogue(this);
+                    setIsInDialogue(true);
                 }
-
                 return;
             }
-
-            //appropriate if statement here?!
-            interactableItems.Remove(itemTemp);
-            if (itemTemp.tag == "Ammo")
+            else if (itemTemp.tag == "Ammo")
             {
-                ammo+=itemTemp.GetComponent<AmmoBoxController>().ammoInteract();//change to accept all consumable types
+                ammo+=itemTemp.GetComponent<AmmoBoxController>().ammoInteract();
+                interactableItems.Remove(itemTemp);
             }
             else if(itemTemp.tag == "Health")
             {
                 health+=itemTemp.GetComponent<HealthBoxController>().healthInteract();
                 bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
+                interactableItems.Remove(itemTemp);
             }
+        }
+    }
+
+    public void setIsInDialogue(bool isInDialogueIn)
+    {
+        isInDialogue=isInDialogueIn;
+        setGameSpeed();
+    }
+
+    public void setGameSpeed()
+    {
+        if (isInDialogue || gameMenuController.getIsPaused())
+        {
+            Time.timeScale=0;
+        }
+        else
+        {
+            Time.timeScale=1;
         }
     }
 
@@ -378,20 +395,4 @@ public class PlayerController : MonoBehaviour
             bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
         }
     }
-    public void DisableMovement()
-    {
-        movementDisabled = true;
-
-        direction = 0;
-        rollDirection = 0;
-
-  
-        isRolling = false;
-    }
-
-    public void EnableMovement()
-    {
-        movementDisabled = false;
-    }
-
 }

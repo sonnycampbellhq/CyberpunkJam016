@@ -12,6 +12,9 @@ public class GameMenuController : MonoBehaviour
 
     [SerializeField]
     GameObject confirmMenu;
+
+    [SerializeField]
+    PlayerController playerController;
     InputAction pause;
 
     bool isPaused;
@@ -35,16 +38,15 @@ public class GameMenuController : MonoBehaviour
         if (isPaused)
         {
             //pause game and load pause menu
-            Time.timeScale=0;
             pauseMenu.SetActive(true);
         }
         else
         {
             // play game and remove the currently loaded menu
-            Time.timeScale=1;
             pauseMenu.SetActive(false);
             optionsMenu.SetActive(false);
         }
+        playerController.setGameSpeed();
     }
 
     public void onPauseButtonPress()
