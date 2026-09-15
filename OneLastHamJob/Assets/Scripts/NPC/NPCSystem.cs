@@ -13,7 +13,7 @@ public class NPCSystem : MonoBehaviour
     {
         if (dialogue == null)
         {
-            dialogue = FindFirstObjectByType<DialogueManager>();
+            dialogue = FindAnyObjectByType<DialogueManager>();
         }
     }
 
