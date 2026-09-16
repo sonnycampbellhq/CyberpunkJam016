@@ -14,6 +14,7 @@ TagManager:
   - Datapad
   - NPC
   - AudioLog
+  - Door
   layers:
   - Default
   - TransparentFX

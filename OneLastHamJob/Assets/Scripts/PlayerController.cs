@@ -223,6 +223,11 @@ public class PlayerController : MonoBehaviour
                 bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
                 interactableItems.Remove(itemTemp);
             }
+            else if(itemTemp.tag == "Door")
+            {
+                itemTemp.GetComponent<DoorController>().DoorInteract();
+                interactableItems.Remove(itemTemp);
+            }
             else if(itemTemp.tag == "AudioLog")
             {
                 AudioLogController audioLogControllerTemp = itemTemp.GetComponent<AudioLogController>();
