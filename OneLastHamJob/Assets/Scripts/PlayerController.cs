@@ -94,6 +94,8 @@ public class PlayerController : MonoBehaviour
         bloodParticleSystem = transform.GetChild(1).gameObject;
         bleedParticleSystem = transform.GetChild(2).gameObject;
         gunshotParticleSystem = transform.GetChild(3).gameObject;
+
+        setGameSpeed();
     }
 
     // Update is called once per frame

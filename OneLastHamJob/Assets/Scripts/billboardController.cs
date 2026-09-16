@@ -43,9 +43,6 @@ public class BillboardController : MonoBehaviour
         {
             scale=0;
         }
-        //also deal with when parent is removed, set this as no oarent, continue running script and destroy in tmax secs
-        //also experiment with rotation]
-
         transform.localScale=new Vector3(scale, scale, 0);
     }
 
