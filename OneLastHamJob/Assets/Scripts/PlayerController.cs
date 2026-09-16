@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     Camera camera;
     [SerializeField]
+    Vector4 cameraRanges;
+    [SerializeField]
     GameMenuController gameMenuController;
     RenderTexture resolutionTarget;
     InputAction movement;
@@ -75,6 +77,10 @@ public class PlayerController : MonoBehaviour
 
     Transform checkpoint;
 
+    void Awake()
+    {
+        Debug.Log("set the camera min and max positions");
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -267,7 +273,7 @@ public class PlayerController : MonoBehaviour
 
                 //gets and sorts hits by distance
                 RaycastHit[] hits = new RaycastHit[5];
-                int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits, maxDistance: 10);
+                int hitCount = Physics.RaycastNonAlloc(transform.position+playerShootOffset, shootVector.normalized, hits, maxDistance: 25);
                 float[] hitDistances = new float[hitCount];
                 for(int k = 0; k<hitCount; k++)
                 {
@@ -398,6 +404,11 @@ public class PlayerController : MonoBehaviour
     {
         checkpoint = newCheckpoint;
         Debug.Log("Checkpoint set!");
+    }
+
+    public Vector4 GetCameraRanges()
+    {
+        return cameraRanges;
     }
 
     public void Respawn()
