@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     [SerializeField]
+    AudioHandler audioHandler;
+    AudioSource audioSource;
+
+    [SerializeField]
     Camera camera;
     [SerializeField]
     GameMenuController gameMenuController;
@@ -76,6 +80,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb=gameObject.GetComponent<Rigidbody>();
+
+        audioSource = audioHandler.getAudioSource();
 
         Cursor.SetCursor(reticleTexture, new Vector2(16,16), CursorMode.Auto);
 
@@ -211,6 +217,13 @@ public class PlayerController : MonoBehaviour
                 bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
                 interactableItems.Remove(itemTemp);
             }
+            else if(itemTemp.tag == "AudioLog")
+            {
+                AudioLogController audioLogControllerTemp = itemTemp.GetComponent<AudioLogController>();
+                audioSource.PlayOneShot(audioLogControllerTemp.getAudioClip());
+                audioLogControllerTemp.AudioLogInteract();
+                interactableItems.Remove(itemTemp);
+            }
         }
     }
 
@@ -276,9 +289,11 @@ public class PlayerController : MonoBehaviour
                     }
                     else if(objectTemp.tag == "Corpse")
                     {
-                        objectTemp.GetComponent<Rigidbody>().linearVelocity+=shootVector*(3-i/2);
+                        objectTemp.GetComponent<Rigidbody>().linearVelocity+=shootVector*(2-i/2);
                     }
                 }
+
+                audioHandler.playGunshot();
             }
             else
             {
@@ -372,7 +387,6 @@ public class PlayerController : MonoBehaviour
         Color tempColour = gameObject.GetComponent<MeshRenderer>().material.color;
         tempColour.a = Mathf.Cos((Time.time-lastHit)*Mathf.PI*5)/2+0.5f;
         gameObject.GetComponent<MeshRenderer>().material.color = tempColour;
-        Debug.Log("MAKE THIS FLASH TRANSPARENT and have a shadow");
     }
 
     public float getDirection()
