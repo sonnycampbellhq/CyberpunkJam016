@@ -1537,6 +1537,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 7945546203145346100, guid: df535bda81a249e4fb76817ebd1c820c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5667067644184591574, guid: 78c10a3b706423e41a7572a269486733, type: 3}
+    - target: {fileID: 7945546203145346100, guid: df535bda81a249e4fb76817ebd1c820c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3242,6 +3250,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6065035584452883931, guid: 0e5ccdc2b961f9549ae0d3a1be67dba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5667067644184591574, guid: 78c10a3b706423e41a7572a269486733, type: 3}
+    - target: {fileID: 6065035584452883931, guid: 0e5ccdc2b961f9549ae0d3a1be67dba6, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6822161280827088584, guid: 0e5ccdc2b961f9549ae0d3a1be67dba6, type: 3}
       propertyPath: m_Name
       value: AmmoPickup
@@ -4384,6 +4400,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3297600786182812968, guid: d7e5fb902b53e3f459783194044d5c0b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4327050781469932630, guid: cc93757cbf601fb4d8366e141b9b101d, type: 3}
+    - target: {fileID: 3297600786182812968, guid: d7e5fb902b53e3f459783194044d5c0b, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4399517896331530339, guid: d7e5fb902b53e3f459783194044d5c0b, type: 3}
       propertyPath: xOffset
       value: -2
@@ -4646,6 +4670,14 @@ PrefabInstance:
     - target: {fileID: 83064956822751525, guid: 33d2b7495711f0a47a7d1dee2983468e, type: 3}
       propertyPath: m_Name
       value: AudioLog
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634234918719625493, guid: 33d2b7495711f0a47a7d1dee2983468e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5667067644184591574, guid: 78c10a3b706423e41a7572a269486733, type: 3}
+    - target: {fileID: 1634234918719625493, guid: 33d2b7495711f0a47a7d1dee2983468e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8399902592238518642, guid: 33d2b7495711f0a47a7d1dee2983468e, type: 3}
       propertyPath: m_LocalPosition.x
