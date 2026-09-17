@@ -29,7 +29,6 @@ public class DoorController : MonoBehaviour
     public Vector4 getNewCameraBounds()
     {
         Debug.Log("Instead put the camera bounds in an accessible script within each sub level and access it on creation to reduce manual camera bounds writing");
-        Debug.Log("Also with playerPos??");
         return cameraBounds;
     }
 

@@ -8,11 +8,21 @@ public class BillboardController : MonoBehaviour
     float scaleRate = 5;
     float scaleMax=5;
 
+    float normalisedXScale;
+    float normalisedYScale;
+
+    [SerializeField]
+    float xOffset;
+    
     Vector3 defaultPosition;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        normalisedXScale = 1/transform.parent.localScale.x;
+        normalisedYScale = 1/transform.parent.localScale.y;
         defaultPosition = transform.position;
+
+        //xOffset=xOffset*normalisedXScale;
     }
 
     // Update is called once per frame
@@ -21,7 +31,7 @@ public class BillboardController : MonoBehaviour
         updateScale();
         if (inRange)
         {
-            updateHeight();
+            updatePosition();
         }
     }
 
@@ -43,7 +53,7 @@ public class BillboardController : MonoBehaviour
         {
             scale=0;
         }
-        transform.localScale=new Vector3(scale, scale, 0);
+        transform.localScale=new Vector3(scale*normalisedXScale, scale*normalisedYScale, 0);
     }
 
     public void preDestroy()
@@ -53,10 +63,11 @@ public class BillboardController : MonoBehaviour
         Destroy(gameObject, 1);
     }
 
-    void updateHeight()
+    void updatePosition()
     {
         Vector3 tempPosition = defaultPosition;
-        tempPosition.y = defaultPosition.y+Mathf.Cos(Time.time*2)/3;
+        tempPosition.y = defaultPosition.y*normalisedYScale+Mathf.Cos(Time.time*2)/3;
+        tempPosition.x=xOffset+transform.parent.position.x;
         transform.position = tempPosition;
     }
 
