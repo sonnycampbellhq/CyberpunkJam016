@@ -41,9 +41,9 @@ public class CameraController : MonoBehaviour
         yMax=cameraRanges.w;
         */
 
-        xMin=10000;
+        xMin=-10000;
         xMax=10000;
-        yMin=10000;
+        yMin=-10000;
         yMax=10000;
 
         look = InputSystem.actions.FindAction("Look");
