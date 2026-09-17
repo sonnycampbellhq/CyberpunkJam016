@@ -46,12 +46,12 @@ public class mainMenuController : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    public void SFXSliderChange()
+    void SFXSliderChange()
     {
         optionsHolder.setSFXMultiplier(SFXSlider.value);
     }
 
-    public void MusicSliderChange()
+    void MusicSliderChange()
     {
         optionsHolder.setMusicMultiplier(MusicSlider.value);
     }
@@ -60,5 +60,11 @@ public class mainMenuController : MonoBehaviour
     {
         SFXSlider.value=optionsHolder.getSFXMultiplier();
         MusicSlider.value=optionsHolder.getMusicMultiplier();
+    }
+
+    public void ApplyOptionsButton()
+    {
+        SFXSliderChange();
+        MusicSliderChange();
     }
 }

@@ -27,7 +27,6 @@ public class GameMenuController : MonoBehaviour
     void Start()
     {
         pause = InputSystem.actions.FindAction("Pause");
-        
     }
 
     void Update()
@@ -115,12 +114,12 @@ public class GameMenuController : MonoBehaviour
         return isPaused;
     }
 
-    public void SFXSliderChange()
+    void SFXSliderChange()
     {
         optionsHolder.setSFXMultiplier(SFXSlider.value);
     }
 
-    public void MusicSliderChange()
+    void MusicSliderChange()
     {
         optionsHolder.setMusicMultiplier(MusicSlider.value);
     }
@@ -129,5 +128,11 @@ public class GameMenuController : MonoBehaviour
     {
         SFXSlider.value=optionsHolder.getSFXMultiplier();
         MusicSlider.value=optionsHolder.getMusicMultiplier();
+    }
+
+    public void ApplyOptionsButton()
+    {
+        SFXSliderChange();
+        MusicSliderChange();
     }
 }
