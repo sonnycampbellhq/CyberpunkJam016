@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameMenuController : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class GameMenuController : MonoBehaviour
 
     [SerializeField]
     GameObject optionsMenu;
+    OptionsStatus optionsHolder;
+
+    Slider SFXSlider;
+    Slider MusicSlider;
 
     [SerializeField]
     GameObject confirmMenu;
@@ -22,6 +27,7 @@ public class GameMenuController : MonoBehaviour
     void Start()
     {
         pause = InputSystem.actions.FindAction("Pause");
+        
     }
 
     void Update()
@@ -60,6 +66,21 @@ public class GameMenuController : MonoBehaviour
         //load options menu
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(true);
+        optionsHolder = FindAnyObjectByType<OptionsStatus>();
+        Slider[] sliders = FindObjectsByType<Slider>();
+        for(int i = 0; i < 2; i++)
+        {
+            if (sliders[i].name == "SFXSlider")
+            {
+                SFXSlider = sliders[i];
+            }
+            else
+            {
+                MusicSlider = sliders[i];
+            }
+        }
+        
+        SetSliderPositions();
     }
 
     public void onOptionsBackButtonPress()
@@ -79,6 +100,7 @@ public class GameMenuController : MonoBehaviour
     public void onConfirmMenuPress()
     {
         // sceneManager.load main menu
+        Time.timeScale=1;
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -91,5 +113,21 @@ public class GameMenuController : MonoBehaviour
     public bool getIsPaused()
     {
         return isPaused;
+    }
+
+    public void SFXSliderChange()
+    {
+        optionsHolder.setSFXMultiplier(SFXSlider.value);
+    }
+
+    public void MusicSliderChange()
+    {
+        optionsHolder.setMusicMultiplier(MusicSlider.value);
+    }
+
+    void SetSliderPositions()
+    {
+        SFXSlider.value=optionsHolder.getSFXMultiplier();
+        MusicSlider.value=optionsHolder.getMusicMultiplier();
     }
 }

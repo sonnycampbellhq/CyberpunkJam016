@@ -15,6 +15,7 @@ TagManager:
   - NPC
   - AudioLog
   - Door
+  - OptionsHolder
   layers:
   - Default
   - TransparentFX
