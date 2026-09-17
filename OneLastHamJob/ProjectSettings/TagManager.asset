@@ -16,6 +16,7 @@ TagManager:
   - AudioLog
   - Door
   - OptionsHolder
+  - BulletUI
   layers:
   - Default
   - TransparentFX
