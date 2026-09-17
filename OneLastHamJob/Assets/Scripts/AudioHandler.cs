@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AudioHandler : MonoBehaviour
 {
+    OptionsStatus optionsStatus;
     [SerializeField]
     AudioSource audioSource;
     [SerializeField]
@@ -11,7 +12,7 @@ public class AudioHandler : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        optionsStatus = FindAnyObjectByType<OptionsStatus>();
     }
 
     // Update is called once per frame
@@ -21,8 +22,11 @@ public class AudioHandler : MonoBehaviour
     }
 
     public void playGunshot()
-    {
+    {   
+        Debug.Log("change to set volume instead");
+        audioSource.volume = optionsStatus.getSFXMultiplier();
         audioSource.PlayOneShot(gunshot);
+        
     }
 
     public AudioSource getAudioSource()

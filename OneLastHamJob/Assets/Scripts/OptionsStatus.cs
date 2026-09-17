@@ -28,5 +28,6 @@ public class OptionsStatus : MonoBehaviour
     public void setMusicMultiplier(float MusicMultiplierIn)
     {
         MusicMultiplier = MusicMultiplierIn;
+        Debug.Log("CHANGE THIS TO BE ON A 'SET' BUTTON, sets both volume values");
     }
 }
