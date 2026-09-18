@@ -323,7 +323,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Out of ammo");
+                audioHandler.playOurOfAmmo();
             }
         }
     }

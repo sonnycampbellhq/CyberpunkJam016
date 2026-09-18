@@ -3,7 +3,7 @@ using UnityEngine;
 public class OptionsStatus : MonoBehaviour
 {
     float SFXMultiplier=1;
-    float MusicMultiplier=0;
+    float MusicMultiplier=1;
 
     void Start()
     {

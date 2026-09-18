@@ -22,11 +22,14 @@ public class GameMenuController : MonoBehaviour
     PlayerController playerController;
     InputAction pause;
 
+    AudioHandler audioHandler;
+
     bool isPaused;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pause = InputSystem.actions.FindAction("Pause");
+        audioHandler = FindAnyObjectByType<AudioHandler>();
     }
 
     void Update()
@@ -117,11 +120,13 @@ public class GameMenuController : MonoBehaviour
     void SFXSliderChange()
     {
         optionsHolder.setSFXMultiplier(SFXSlider.value);
+        audioHandler.SetSFXVolume(SFXSlider.value);
     }
 
     void MusicSliderChange()
     {
         optionsHolder.setMusicMultiplier(MusicSlider.value);
+        audioHandler.SetMusicVolume(MusicSlider.value);
     }
 
     void SetSliderPositions()
