@@ -232,6 +232,7 @@ public class PlayerController : MonoBehaviour
             }
             else if(itemTemp.tag == "Health")
             {
+                audioHandler.playHeal();
                 health+=itemTemp.GetComponent<HealthBoxController>().healthInteract();
                 updateHealthUI();
                 bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
@@ -374,12 +375,13 @@ public class PlayerController : MonoBehaviour
         {
             lastHit = Time.time;
             health--;
-            Debug.Log(health);
+            audioHandler.playTakeDamage();
 
             onHitParticles(enemyGO.transform.position);
 
             if (health <= 0)
             {
+                audioHandler.playDie();
                 Respawn();
             }
 

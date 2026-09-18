@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AudioHandler : MonoBehaviour
@@ -10,7 +11,18 @@ public class AudioHandler : MonoBehaviour
     [SerializeField]
     AudioClip gunshot;
     [SerializeField]
+    AudioClip HamDamage;
+    [SerializeField]
+    AudioClip HamDeath;
+    [SerializeField]
     AudioClip outOfAmmo;
+    [SerializeField]
+    AudioClip Die;
+    [SerializeField]
+    AudioClip Heal;
+    [SerializeField]
+    AudioClip TakeDamage;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,19 +32,39 @@ public class AudioHandler : MonoBehaviour
         musicSource.Play();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void playGunshot()
     {
         audioSource.PlayOneShot(gunshot);
     }
 
+    public void playHamDamage()
+    {
+        audioSource.PlayOneShot(HamDamage);
+    }
+
+    public void playHamDeath()
+    {
+        audioSource.PlayOneShot(HamDeath);
+    }
+
     public void playOurOfAmmo()
     {
         audioSource.PlayOneShot(outOfAmmo);
+    }
+
+    public void playDie()
+    {
+        audioSource.PlayOneShot(Die);
+    }
+
+    public void playHeal()
+    {
+        audioSource.PlayOneShot(Heal);
+    }
+
+    public void playTakeDamage()
+    {
+        audioSource.PlayOneShot(TakeDamage);
     }
 
     public AudioSource getAudioSource()

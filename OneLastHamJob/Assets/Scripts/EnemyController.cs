@@ -10,12 +10,14 @@ public class EnemyController : MonoBehaviour
     GameObject bloodParticleSystem;
     [SerializeField]
     GameObject corpse;
+    AudioHandler audioHandler;
     int health=3;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         bloodParticleSystem = transform.GetChild(0).gameObject;
+        audioHandler = FindAnyObjectByType<AudioHandler>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,8 @@ public class EnemyController : MonoBehaviour
         {
             // on death, spawn in a copy of the mesh, which is ragdolled, and doesn't have the enemy tag
             // have a darker colour so it's clearly dead, and emit a final blood particle
+            audioHandler.playHamDeath();
+
             bloodParticleSystem.transform.parent=null;
             Destroy(bloodParticleSystem, 5);
             GameObject corpseInstance = Instantiate(corpse);
@@ -53,6 +57,10 @@ public class EnemyController : MonoBehaviour
             corpseInstance.GetComponent<Rigidbody>().linearVelocity = new Vector2(Mathf.Cos(damageAngle), Mathf.Sin(damageAngle))*3; 
             Destroy(corpseInstance, 10);
             Destroy(gameObject);
+        }
+        else
+        {
+            audioHandler.playHamDamage();
         }
     }
 }

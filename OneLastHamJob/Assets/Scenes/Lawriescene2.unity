@@ -4357,6 +4357,95 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8213308213538491475, guid: 5246916fd2ee83a45a6ae89d416a32ee, type: 3}
   m_PrefabInstance: {fileID: 1710409089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &559432819
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 339.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 54.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: camera
+      value: 
+      objectReference: {fileID: 1259336397}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: audioHandler
+      value: 
+      objectReference: {fileID: 1160388036}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: cameraRanges.w
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: cameraRanges.x
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: cameraRanges.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: cameraRanges.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: gameMenuController
+      value: 
+      objectReference: {fileID: 1214562352}
+    - target: {fileID: 8263101574713315622, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
+      propertyPath: m_Name
+      value: Detective (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
 --- !u!1001 &569376660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7708,6 +7797,7 @@ MonoBehaviour:
   audioSource: {fileID: 1937624739}
   musicSource: {fileID: 0}
   gunshot: {fileID: 8300000, guid: 6433458ef172da94aac80b95caf01b13, type: 3}
+  outOfAmmo: {fileID: 0}
 --- !u!1 &1177675429
 GameObject:
   m_ObjectHideFlags: 0
@@ -14353,7 +14443,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4
+      value: 156.6
       objectReference: {fileID: 0}
     - target: {fileID: 2861023528505677738, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14402,7 +14492,7 @@ PrefabInstance:
     - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: audioHandler
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1160388036}
     - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: cameraRanges.w
       value: 6
@@ -14422,7 +14512,7 @@ PrefabInstance:
     - target: {fileID: 4822094818054899592, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: gameMenuController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1214562352}
     - target: {fileID: 8263101574713315622, guid: 0690698c963d73344ae47f5fa142c659, type: 3}
       propertyPath: m_Name
       value: Detective
@@ -15902,3 +15992,4 @@ SceneRoots:
   - {fileID: 261835006}
   - {fileID: 1259336401}
   - {fileID: 1989527921}
+  - {fileID: 559432819}
