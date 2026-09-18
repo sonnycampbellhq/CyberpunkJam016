@@ -17,6 +17,7 @@ public class AudioHandler : MonoBehaviour
         optionsStatus = FindAnyObjectByType<OptionsStatus>();
         SetSFXVolume(optionsStatus.getSFXMultiplier());
         SetMusicVolume(optionsStatus.getMusicMultiplier());
+        musicSource.Play();
     }
 
     // Update is called once per frame
@@ -27,7 +28,6 @@ public class AudioHandler : MonoBehaviour
     public void playGunshot()
     {
         audioSource.PlayOneShot(gunshot);
-        Debug.Log(audioSource.volume +" v");
     }
 
     public void playOurOfAmmo()
