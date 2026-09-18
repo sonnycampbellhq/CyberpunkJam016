@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     InputAction jump;
 
     GameObject BulletUI;
+    GameObject HealthUI;
 
     List<GameObject> interactableItems;
 
@@ -113,8 +114,10 @@ public class PlayerController : MonoBehaviour
         gunshotParticleSystem = transform.GetChild(3).gameObject;
 
         BulletUI = GameObject.FindGameObjectWithTag("BulletUI");
+        HealthUI = GameObject.FindGameObjectWithTag("HealthUI");
 
         updateBulletUI();
+        updateHealthUI();
 
         setGameSpeed();
     }
@@ -230,6 +233,7 @@ public class PlayerController : MonoBehaviour
             else if(itemTemp.tag == "Health")
             {
                 health+=itemTemp.GetComponent<HealthBoxController>().healthInteract();
+                updateHealthUI();
                 bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
                 interactableItems.Remove(itemTemp);
             }
@@ -378,6 +382,8 @@ public class PlayerController : MonoBehaviour
             {
                 Respawn();
             }
+
+            updateHealthUI();
         }
     }
 
@@ -442,5 +448,10 @@ public class PlayerController : MonoBehaviour
     void updateBulletUI()
     {
         BulletUI.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50*ammo);
+    }
+
+    void updateHealthUI()
+    {
+        HealthUI.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100*health);
     }
 }
