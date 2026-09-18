@@ -26,7 +26,6 @@ public class AudioHandler : MonoBehaviour
         Debug.Log("change to set volume instead");
         audioSource.volume = optionsStatus.getSFXMultiplier();
         audioSource.PlayOneShot(gunshot);
-        
     }
 
     public AudioSource getAudioSource()

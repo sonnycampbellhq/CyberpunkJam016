@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     InputAction interact;
     InputAction roll;
     InputAction jump;
+
+    GameObject BulletUI;
 
     List<GameObject> interactableItems;
 
@@ -100,6 +103,7 @@ public class PlayerController : MonoBehaviour
 
         ammo = startAmmo;
         health = startHealth;
+
         interactableItems = new List<GameObject>();
 
         resolutionTarget = camera.targetTexture;
@@ -107,6 +111,10 @@ public class PlayerController : MonoBehaviour
         bloodParticleSystem = transform.GetChild(1).gameObject;
         bleedParticleSystem = transform.GetChild(2).gameObject;
         gunshotParticleSystem = transform.GetChild(3).gameObject;
+
+        BulletUI = GameObject.FindGameObjectWithTag("BulletUI");
+
+        updateBulletUI();
 
         setGameSpeed();
     }
@@ -216,6 +224,7 @@ public class PlayerController : MonoBehaviour
             else if (itemTemp.tag == "Ammo")
             {
                 ammo+=itemTemp.GetComponent<AmmoBoxController>().ammoInteract();
+                updateBulletUI();
                 interactableItems.Remove(itemTemp);
             }
             else if(itemTemp.tag == "Health")
@@ -264,6 +273,7 @@ public class PlayerController : MonoBehaviour
             if (ammo > 0)
             {
                 ammo--;
+                updateBulletUI();
 
                 //gets angle from player to mouse
                 Vector2 mouse = Mouse.current.position.ReadValue();
@@ -427,5 +437,10 @@ public class PlayerController : MonoBehaviour
             transform.rotation = checkpoint.rotation;
             bleedParticleSystem.GetComponent<ParticleSystem>().Stop();
         }
+    }
+
+    void updateBulletUI()
+    {
+        BulletUI.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 50*ammo);
     }
 }

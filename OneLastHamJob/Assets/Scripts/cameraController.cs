@@ -34,10 +34,17 @@ public class CameraController : MonoBehaviour
         playerMovementScript = player.GetComponent<PlayerController>();
         cameraRanges = playerMovementScript.GetCameraRanges();
 
+        /*
         xMin=cameraRanges.x;
         xMax=cameraRanges.y;
         yMin=cameraRanges.z;
         yMax=cameraRanges.w;
+        */
+
+        xMin=-10000;
+        xMax=10000;
+        yMin=-10000;
+        yMax=10000;
 
         look = InputSystem.actions.FindAction("Look");
     }
