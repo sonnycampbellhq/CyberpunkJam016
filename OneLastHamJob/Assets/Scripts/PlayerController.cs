@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
     bool canRoll;
 
     bool isGrounded = true;
-    float jumpForce = 10;
+    [SerializeField]
+    float jumpForce = 10f;
     bool isJumping = false;
 
     GameObject bloodParticleSystem;
