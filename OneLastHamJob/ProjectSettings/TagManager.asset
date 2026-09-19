@@ -18,6 +18,7 @@ TagManager:
   - OptionsHolder
   - BulletUI
   - HealthUI
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

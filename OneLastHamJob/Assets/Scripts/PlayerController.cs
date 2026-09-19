@@ -340,7 +340,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         GameObject colliderGO = collider.gameObject;
-        if (colliderGO.tag != "Enemy")
+        if (colliderGO.tag != "Enemy"&&colliderGO.tag != "Checkpoint")
         {
             interactableItems.Add(collider.gameObject);
             collider.gameObject.GetComponentInChildren<BillboardController>().setInRange(true);
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerExit(Collider collider)
     {
         GameObject colliderGO = collider.gameObject;
-        if (colliderGO.tag != "Enemy")
+        if (colliderGO.tag != "Enemy"&&colliderGO.tag != "Checkpoint")
         {
             interactableItems.Remove(collider.gameObject);
             collider.gameObject.GetComponentInChildren<BillboardController>().setInRange(false);
