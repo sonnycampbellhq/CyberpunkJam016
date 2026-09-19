@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6697301008414393976, guid: 9f9e97c3ed56ef641a00df9f2c3e97b8, type: 3}
+  m_Sprite: {fileID: -5667067644184591574, guid: 78c10a3b706423e41a7572a269486733, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9750102d3e0a8074d83a975d9487b743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  xOffset: 0
 --- !u!1 &6822161280827088584
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 3, z: 1}
+  m_Size: {x: 3, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: -2}
 --- !u!114 &7062004531378404519
 MonoBehaviour:

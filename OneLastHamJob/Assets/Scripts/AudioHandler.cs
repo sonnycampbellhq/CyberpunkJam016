@@ -23,6 +23,26 @@ public class AudioHandler : MonoBehaviour
     [SerializeField]
     AudioClip TakeDamage;
 
+    // logs 
+    [SerializeField]
+    AudioClip Hamaoke;
+    [SerializeField]
+    AudioClip HamFightEntry;
+    [SerializeField]
+    AudioClip HamLuca;
+    [SerializeField]
+    AudioClip hamming;
+    [SerializeField]
+    AudioClip Pears;
+    [SerializeField]
+    AudioClip AllHam;
+    [SerializeField]
+    AudioClip Victim1;
+    [SerializeField]
+    AudioClip Victim2;
+    [SerializeField]
+    AudioClip Wailing;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,6 +50,51 @@ public class AudioHandler : MonoBehaviour
         SetSFXVolume(optionsStatus.getSFXMultiplier());
         SetMusicVolume(optionsStatus.getMusicMultiplier());
         musicSource.Play();
+    }
+
+    public void playHamaoke()
+    {
+        audioSource.PlayOneShot(Hamaoke);
+    }
+
+    public void playHamFightEntry()
+    {
+        audioSource.PlayOneShot(HamFightEntry);
+    }
+
+    public void playHamLuca()
+    {
+        audioSource.PlayOneShot(HamLuca);
+    }
+
+    public void playHamming()
+    {
+        audioSource.PlayOneShot(hamming);
+    }
+
+    public void playPears()
+    {
+        audioSource.PlayOneShot(Pears);
+    }
+
+    public void playAllHam()
+    {
+        audioSource.PlayOneShot(AllHam);
+    }
+
+    public void playVictim1()
+    {
+        audioSource.PlayOneShot(Victim1);
+    }
+
+    public void playVictim2()
+    {
+        audioSource.PlayOneShot(Victim2);
+    }
+
+    public void playWailing()
+    {
+        audioSource.PlayOneShot(Wailing);
     }
 
     public void playGunshot()
