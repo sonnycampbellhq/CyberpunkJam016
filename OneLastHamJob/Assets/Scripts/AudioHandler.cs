@@ -54,47 +54,47 @@ public class AudioHandler : MonoBehaviour
 
     public void playHamaoke()
     {
-        audioSource.PlayOneShot(Hamaoke);
+        audioSource.PlayOneShot(Hamaoke, 1.2f);
     }
 
     public void playHamFightEntry()
     {
-        audioSource.PlayOneShot(HamFightEntry);
+        audioSource.PlayOneShot(HamFightEntry, 1.2f);
     }
 
     public void playHamLuca()
     {
-        audioSource.PlayOneShot(HamLuca);
+        audioSource.PlayOneShot(HamLuca, 1.2f);
     }
 
     public void playHamming()
     {
-        audioSource.PlayOneShot(hamming);
+        audioSource.PlayOneShot(hamming, 1.2f);
     }
 
     public void playPears()
     {
-        audioSource.PlayOneShot(Pears);
+        audioSource.PlayOneShot(Pears, 1.2f);
     }
 
     public void playAllHam()
     {
-        audioSource.PlayOneShot(AllHam);
+        audioSource.PlayOneShot(AllHam, 1.2f);
     }
 
     public void playVictim1()
     {
-        audioSource.PlayOneShot(Victim1);
+        audioSource.PlayOneShot(Victim1, 1.2f);
     }
 
     public void playVictim2()
     {
-        audioSource.PlayOneShot(Victim2);
+        audioSource.PlayOneShot(Victim2, 1.2f);
     }
 
     public void playWailing()
     {
-        audioSource.PlayOneShot(Wailing);
+        audioSource.PlayOneShot(Wailing, 1.2f);
     }
 
     public void playGunshot()

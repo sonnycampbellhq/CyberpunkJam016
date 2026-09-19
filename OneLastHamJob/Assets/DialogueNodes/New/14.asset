@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: 14
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: Ham Central is the headquarters of Hemlin Homlin's Marvelous Ham! All of our delicious ham is birthed, processed, and packed right here. With our widely beloved ham, we strive to provide a bright and sunny future for all!
+  option1:
+    text: Not the sunniest HQ i've ever seen.
+    next: {fileID: 11400000, guid: 9a9adea632c9b2746bf05414c598864c, type: 2}
+    action: 0
+  option2:
+    text: Who is Hemlin Homlin?
+    next: {fileID: 11400000, guid: 24936e19647dec94faf375ef9712c4f3, type: 2}
+    action: 0

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: Worker's Journal 3.2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: 'There is Peace, joy, and Ham
+
+    The great Hammy gift is here for all
+
+    From far and wide, children join the Family
+
+    With Ham there is no disease
+
+    With Ham there is no War
+
+    With Ham there is no greed
+
+    With Ham there are no Monsters
+
+    Only the Hamily
+
+    Thank you Hemlin Homlin for your Marvelous Ham'
+  option1:
+    text: Exit
+    next: {fileID: 0}
+    action: 0
+  option2:
+    text: 
+    next: {fileID: 0}
+    action: 0

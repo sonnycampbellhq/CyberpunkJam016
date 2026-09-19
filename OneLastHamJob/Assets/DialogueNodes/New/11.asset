@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: 11
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: 'ACCESS GRANTED
+
+
+    Welcome to the Ham Central computer network.
+
+
+    Enter commands below.'
+  option1:
+    text: I have some questions.
+    next: {fileID: 11400000, guid: 7109611b6e0bbe0469718359ef2f99dd, type: 2}
+    action: 0
+  option2:
+    text: Open all locked doors.
+    next: {fileID: 11400000, guid: c090cfdf31be4ef40be4884e7f746744, type: 2}
+    action: 1

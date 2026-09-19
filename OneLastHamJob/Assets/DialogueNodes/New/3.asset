@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: The great Hammy gift is here for -
+  option1:
+    text: All.
+    next: {fileID: 11400000, guid: 224ed972eec57fa4d8c62ce227c2825b, type: 2}
+    action: 0
+  option2:
+    text: The great.
+    next: {fileID: 11400000, guid: bde72e3bbb537da4b94116c233676693, type: 2}
+    action: 0

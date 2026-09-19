@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: 15
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: Ham central may have a dingy atmosphere, as it has been under a strict lockdown for 366 days, to allow Hemlin Homlin to plan The Marvellous Day without interruption.
+  option1:
+    text: What is The Marvellous Day?
+    next: {fileID: 11400000, guid: b4b08ec27cb86a2479eaf18b201e748b, type: 2}
+    action: 0
+  option2:
+    text: Who is Hemlin Homlin?
+    next: {fileID: 11400000, guid: 24936e19647dec94faf375ef9712c4f3, type: 2}
+    action: 0

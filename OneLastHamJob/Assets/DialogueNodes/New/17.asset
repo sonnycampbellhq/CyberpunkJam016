@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
+  m_Name: 17
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  line: Hemlin Homlin is the Great Ham Master, and founder of this company. For his whole life, the Ham Master has toiled away, hoping to birth a better future for all.
+  option1:
+    text: Why Ham?
+    next: {fileID: 11400000, guid: 746b38f508b7d1a45b75465a8049e903, type: 2}
+    action: 0
+  option2:
+    text: Where is he?
+    next: {fileID: 11400000, guid: 6b1af680f4a365d499837780299e7d8c, type: 2}
+    action: 0
