@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6fba55abdb5c7498e1cb291b496601, type: 3}
   m_Name: DebrisCollector
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
-  line: 'Capacity - 97%
+  line: 'Capacity - 99%
 
 
     Contents
@@ -22,13 +22,13 @@ MonoBehaviour:
 
     Atmospheric Metal Residue - 15%
 
-    Organic Material - 8%
+    Organic Material - 10%
 
 
 
 
 
-    THIS DEBRIS COLLECTION MONITOR HAS BEEN CERTIFIED AS OPERATIONAL BY THE EURASIAN INSTITUTE OF INDUSTRIAL SAFETY 08/03/2131'
+    THIS CHIMNEY DEBRIS COLLECTION MONITOR HAS BEEN CERTIFIED AS OPERATIONAL BY THE EURASIAN INSTITUTE OF INDUSTRIAL SAFETY 08/03/2131'
   option1:
     text: Exit
     next: {fileID: 0}

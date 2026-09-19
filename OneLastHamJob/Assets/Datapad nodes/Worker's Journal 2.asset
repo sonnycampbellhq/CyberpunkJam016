@@ -14,17 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   line: '04/11/2133
 
-    
+
 
     I lived the same day again. Nothing new. Checking the Ham movers, making sure they are moving ham et cetera.
 
-
-    Only thing thats changed is my drugs aren''t working as well as they used
-
-    to. Feeling a lot of Metal in my throat.
-
-
-    Fuck the Zani.'
+'
   option1:
     text: Exit
     next: {fileID: 0}
