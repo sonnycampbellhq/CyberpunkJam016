@@ -54,52 +54,61 @@ public class AudioHandler : MonoBehaviour
 
     public void playHamaoke()
     {
+        stopCurrent();
         audioSource.PlayOneShot(Hamaoke, 1.2f);
     }
 
     public void playHamFightEntry()
     {
+        stopCurrent();
         audioSource.PlayOneShot(HamFightEntry, 1.2f);
     }
 
     public void playHamLuca()
     {
-        audioSource.PlayOneShot(HamLuca, 1.2f);
+        stopCurrent();
+        audioSource.PlayOneShot(HamLuca, 2f);
     }
 
     public void playHamming()
     {
+        stopCurrent();
         audioSource.PlayOneShot(hamming, 1.2f);
     }
 
     public void playPears()
     {
+        stopCurrent();
         audioSource.PlayOneShot(Pears, 1.2f);
     }
 
     public void playAllHam()
     {
+        stopCurrent();
         audioSource.PlayOneShot(AllHam, 1.2f);
     }
 
     public void playVictim1()
     {
-        audioSource.PlayOneShot(Victim1, 1.2f);
+        stopCurrent();
+        audioSource.PlayOneShot(Victim1, 1.3f);
     }
 
     public void playVictim2()
     {
+        stopCurrent();
         audioSource.PlayOneShot(Victim2, 1.2f);
     }
 
     public void playWailing()
     {
+        stopCurrent();
         audioSource.PlayOneShot(Wailing, 1.2f);
     }
 
     public void playGunshot()
     {
-        audioSource.PlayOneShot(gunshot);
+        audioSource.PlayOneShot(gunshot, 0.9f);
     }
 
     public void playHamDamage()
@@ -146,5 +155,10 @@ public class AudioHandler : MonoBehaviour
     public void SetMusicVolume(float volumeIn)
     {
         musicSource.volume = volumeIn;
+    }
+
+    void stopCurrent()
+    {
+        audioSource.Pause();
     }
 }

@@ -37,6 +37,7 @@ public class NPCSystem : MonoBehaviour
 
     private void HandleDialogueAction(DialogueActionType action)
     {
+        Debug.Log(action);
         switch (action)
         {
             case DialogueActionType.None:
@@ -45,7 +46,8 @@ public class NPCSystem : MonoBehaviour
             case DialogueActionType.OpenDoors:
                 if (doors != null)
                 {
-                    doors.DoorsOpen = true;
+                    doors.SetDoorsOpen();
+                    Debug.Log("YUH");
                 }
                 break;
         }

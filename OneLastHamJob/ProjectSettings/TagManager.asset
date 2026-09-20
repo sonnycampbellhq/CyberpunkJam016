@@ -19,6 +19,7 @@ TagManager:
   - BulletUI
   - HealthUI
   - Checkpoint
+  - Win
   layers:
   - Default
   - TransparentFX

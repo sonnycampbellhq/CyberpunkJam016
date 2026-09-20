@@ -3295,7 +3295,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TITLE (ham)
+  m_text: HAM-PUNK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 97751a3d3a062c240a76e9efd1014cec, type: 2}
   m_sharedMaterial: {fileID: 2599148498794306286, guid: 97751a3d3a062c240a76e9efd1014cec, type: 2}

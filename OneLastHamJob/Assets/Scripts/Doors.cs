@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    public bool DoorsOpen = false;
-
-    void Update()
+    public void SetDoorsOpen()
     {
-        if (DoorsOpen)
-        {
-            gameObject.SetActive(false);
-        }
+        gameObject.SetActive(false);
     }
 }

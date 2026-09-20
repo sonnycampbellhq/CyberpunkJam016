@@ -82,11 +82,6 @@ public class PlayerController : MonoBehaviour
 
     Transform checkpoint;
 
-    void Awake()
-    {
-        Debug.Log("set the camera min and max positions");
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -187,7 +182,6 @@ public class PlayerController : MonoBehaviour
             {
                 lastRoll = Time.time;
                 rollDirection = direction;
-                Debug.Log("roll animation WHOA");
             }
         }
         else if (isRolling)
@@ -249,6 +243,10 @@ public class PlayerController : MonoBehaviour
                 audioSource.PlayOneShot(audioLogControllerTemp.getAudioClip());
                 audioLogControllerTemp.AudioLogInteract();
                 interactableItems.Remove(itemTemp);
+            }
+            else if (itemTemp.tag == "Win")
+            {
+                itemTemp.GetComponent<winController>().win();
             }
         }
     }
@@ -427,7 +425,6 @@ public class PlayerController : MonoBehaviour
     public void SetCheckpoint(Transform newCheckpoint)
     {
         checkpoint = newCheckpoint;
-        Debug.Log("Checkpoint set!");
     }
 
     public Vector4 GetCameraRanges()

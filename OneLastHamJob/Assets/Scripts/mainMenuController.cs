@@ -21,6 +21,11 @@ public class mainMenuController : MonoBehaviour
         Application.Quit();
     }
 
+    public void onMenuButtonPress()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void optionsButtonPress()
     {
         optionsMenu.SetActive(true);
